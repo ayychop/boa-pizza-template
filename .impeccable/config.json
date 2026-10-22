@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "side-tab",
+        "value": "*",
+        "files": [
+          "src/index.css"
+        ],
+        "createdAt": "2026-10-22T06:17:02.136Z",
+        "reason": "Claude triage: L133 is .btn-ember's inset 0 -3px 0 bottom lip (a pressed-key bevel on a button), not a one-sided accent border on a card"
+      }
+    ]
+  }
+}

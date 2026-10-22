@@ -15,7 +15,8 @@ export const BUSINESS = {
 export const PHOTOS = {
   hero: img('1579751626657-72bc17010498', 2000),
   crust: img('1571997478779-2adcbbe9ab2f', 2000),
-  flames: img('1600565193348-f74bd3c7ccdf', 2000),
+  // Public domain: "Fire fire flames" by Jon Sullivan, via Wikimedia Commons (see public/img/credits.json).
+  flames: '/img/fire-fire-flames.jpg',
   buffalo: img('1564936281291-294551497d81', 2000),
   box: img('1601924582970-9238bcb495d9', 2000),
 }
@@ -97,6 +98,7 @@ export const MENU = [
     id: 'prosciutto', cat: 'specials', kind: 'pizza', name: 'Prosciutto e Rucola', price: 15.5,
     desc: 'Twenty-four month prosciutto di Parma, rocket, parmigiano, after the bake.',
     tags: [], img: img('1528137871618-79d2761e3fd5'),
+    look: { zoom: 1.35, origin: '55% 35%' }, // crops the blue table out of frame
   },
   {
     id: 'salumi', cat: 'specials', kind: 'pizza', name: 'Salumi Misti', price: 15,
@@ -144,8 +146,13 @@ export const MENU = [
     id: 'cola', cat: 'drinks', kind: 'simple', name: 'Coca-Cola', price: 2.8,
     desc: 'Classic or Zero, 330ml can.',
     tags: [], img: img('1622483767028-3f66f32aef97', 600),
+    look: { tone: 'dim' }, // bright studio ad shot, sunk to the board
   },
 ]
+
+// Minutes from order to door (delivery) or to the pass (collection).
+export const ETA_MINS = { delivery: 40, pickup: 20 }
+
 
 export const DELIVERY_FEE = 2.95
 export const FREE_DELIVERY_OVER = 35
@@ -176,4 +183,23 @@ export function totals(subtotal, mode) {
 export function isOpenNow(date = new Date()) {
   const h = date.getHours()
   return BUSINESS.openDays.includes(date.getDay()) && h >= BUSINESS.openHour && h < BUSINESS.closeHour
+}
+
+// The moment the kitchen can start on an order placed now: now if open, else the next opening.
+export function nextOpenAt(now = new Date()) {
+  if (isOpenNow(now)) return now
+  for (let i = 0; i < 8; i++) {
+    const d = new Date(now)
+    d.setDate(now.getDate() + i)
+    d.setHours(BUSINESS.openHour, 0, 0, 0)
+    if (d > now && BUSINESS.openDays.includes(d.getDay())) return d
+  }
+  return now
+}
+
+// When an order placed now reaches the door (or the pass). Adds the weekday when it is not today.
+export function doorTime(mode, now = new Date()) {
+  const at = new Date(nextOpenAt(now).getTime() + ETA_MINS[mode] * 60000)
+  const time = at.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' })
+  return at.toDateString() === now.toDateString() ? time : `${at.toLocaleDateString('en-GB', { weekday: 'short' })} ${time}`
 }

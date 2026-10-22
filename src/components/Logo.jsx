@@ -1,14 +1,14 @@
 import { Flame } from './icons'
 
-export default function Logo({ className = '' }) {
+// compact: the wordmark steps aside below the sm breakpoint, leaving the flame tile.
+export default function Logo({ className = '', compact = false }) {
   return (
     <span className={`inline-flex items-center gap-2.5 ${className}`}>
-      <span className="relative grid h-8 w-8 place-items-center rounded-full bg-ember/15 ring-1 ring-ember/40">
-        <Flame className="h-4 w-4 text-ember" />
-        <span className="absolute inset-0 rounded-full bg-ember/20 blur-md" />
+      <span className="grid h-9 w-9 shrink-0 place-items-center rounded-[10px] bg-blaze shadow-[inset_0_1px_0_rgba(255,190,180,.45),0_0_24px_-4px_rgba(255,46,46,.7)]">
+        <Flame className="h-[18px] w-[18px] text-white" />
       </span>
-      <span className="whitespace-nowrap font-display text-[1.35rem] italic leading-none tracking-tight">
-        Forno <span className="not-italic font-semibold">Rosso</span>
+      <span className={`poster whitespace-nowrap text-[1.6rem] leading-none ${compact ? 'hidden sm:inline' : ''}`}>
+        Forno <span className="neon neon-on">Rosso</span>
       </span>
     </span>
   )

@@ -12,10 +12,7 @@ import MobileNav from './components/MobileNav'
 import Tracker from './components/Tracker'
 import { useCart } from './context/CartContext'
 import { useLenis } from './hooks/useLenis'
-import { PHOTOS, totals } from './data/menu'
-
-const etaFrom = (mins) =>
-  new Date(Date.now() + mins * 60000).toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' })
+import { PHOTOS, doorTime, totals } from './data/menu'
 
 export default function App() {
   const lenis = useLenis()
@@ -92,7 +89,7 @@ export default function App() {
       lines: cart.lines,
       mode,
       ...t,
-      eta: etaFrom(mode === 'delivery' ? 40 : 20),
+      eta: doorTime(mode),
     })
   }
 
@@ -109,7 +106,7 @@ export default function App() {
       <Header count={cart.count} onCart={() => setCartOpen(true)} onNav={(id) => scrollTo(id)} />
 
       <main className="pb-mobile-nav">
-        <Hero onOrder={() => scrollTo('menu', -40)} onOpenItem={setActiveItem} />
+        <Hero mode={mode} onOrder={() => scrollTo('menu', -40)} onOpenItem={setActiveItem} />
         <Menu onOpen={setActiveItem} onQuickAdd={quickAdd} onNav={scrollTo} />
         <Oven />
         <FindUs />

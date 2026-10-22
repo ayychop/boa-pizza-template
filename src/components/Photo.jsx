@@ -1,7 +1,10 @@
 import { useEffect, useRef, useState } from 'react'
 
 // Warm-graded, vignetted image with a soft fade-in once decoded.
-export default function Photo({ src, alt = '', className = '', imgClassName = '', vignette = true, eager = false, sizes }) {
+// look: per-photo art direction from the menu data. zoom/origin crop a stray background out of
+// frame; tone 'dim' sinks a bright studio shot to the board's value. Clients set it per photo.
+export default function Photo({ src, alt = '', className = '', imgClassName = '', vignette = true, eager = false, sizes, look }) {
+  const { zoom = 1, origin = '50% 50%', tone } = look || {}
   const ref = useRef(null)
   const [loaded, setLoaded] = useState(false)
 
@@ -10,7 +13,8 @@ export default function Photo({ src, alt = '', className = '', imgClassName = ''
   }, [src])
 
   return (
-    <div className={`photo overflow-hidden ${/\b(absolute|fixed)\b/.test(className) ? '' : 'relative'} ${className}`}>
+    <div className={`photo overflow-hidden ${tone === 'dim' ? 'photo-dim' : ''} ${/\b(absolute|fixed)\b/.test(className) ? '' : 'relative'} ${className}`}>
+      <div className="h-full w-full" style={zoom === 1 ? undefined : { transform: `scale(${zoom})`, transformOrigin: origin }}>
       <img
         ref={ref}
         src={src}
@@ -21,6 +25,7 @@ export default function Photo({ src, alt = '', className = '', imgClassName = ''
         onLoad={() => setLoaded(true)}
         className={`photo-img h-full w-full object-cover transition-opacity duration-700 ease-out ${loaded ? 'opacity-100' : 'opacity-0'} ${imgClassName}`}
       />
+      </div>
       {vignette && <div className="vignette pointer-events-none absolute inset-0" />}
     </div>
   )

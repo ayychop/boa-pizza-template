@@ -23,7 +23,7 @@ export default function Header({ count, onCart, onNav }) {
   return (
     <header
       className={`fixed inset-x-0 top-0 z-40 transition-[background,border-color,backdrop-filter] duration-500 ${
-        scrolled ? 'border-b border-cream/[0.07] bg-ink/70 backdrop-blur-xl' : 'border-b border-transparent'
+        scrolled ? 'border-b border-cream/[0.08] bg-ink/80 backdrop-blur-xl' : 'border-b border-transparent'
       }`}
       style={{ paddingTop: 'env(safe-area-inset-top, 0px)' }}
     >
@@ -37,22 +37,22 @@ export default function Header({ count, onCart, onNav }) {
             <button
               key={id}
               onClick={() => onNav(id)}
-              className="group relative text-sm font-medium text-cream/70 transition-colors hover:text-cream"
+              className="group relative text-[13px] font-extrabold uppercase tracking-[0.08em] text-cream/75 transition-colors duration-200 hover:text-cream"
             >
               {label}
-              <span className="absolute -bottom-1.5 left-0 h-px w-full origin-left scale-x-0 bg-ember transition-transform duration-500 ease-expo group-hover:scale-x-100" />
+              <span className="absolute -bottom-2 left-0 h-[3px] w-full origin-left scale-x-0 rounded-full bg-ember transition-transform duration-300 ease-out group-hover:scale-x-100" />
             </button>
           ))}
         </nav>
 
         <div className="flex items-center gap-2.5">
-          <a href={BUSINESS.phoneHref} className="hidden items-center gap-2 text-sm text-cream/70 transition-colors hover:text-cream lg:inline-flex">
+          <a href={BUSINESS.phoneHref} className="hidden items-center gap-2 text-sm font-semibold tabular-nums text-cream/75 transition-colors hover:text-cream lg:inline-flex">
             <Phone className="h-4 w-4" />
             {BUSINESS.phone}
           </a>
           <button
             onClick={onCart}
-            className="btn-ghost relative hidden h-11 px-5 text-sm md:inline-flex"
+            className="btn-ember relative hidden h-11 px-5 text-base md:inline-flex"
             aria-label={`Open order, ${count} items`}
           >
             <Bag className="h-[18px] w-[18px]" />
@@ -61,18 +61,18 @@ export default function Header({ count, onCart, onNav }) {
               {count > 0 && (
                 <motion.span
                   key={count}
-                  initial={{ scale: 0.4, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  exit={{ scale: 0.4, opacity: 0 }}
-                  transition={{ type: 'spring', stiffness: 500, damping: 22 }}
-                  className="grid h-5 min-w-5 place-items-center rounded-full bg-ember px-1.5 text-[11px] font-bold tabular-nums"
+                  initial={{ transform: 'scale(0.6)', opacity: 0 }}
+                  animate={{ transform: 'scale(1)', opacity: 1 }}
+                  exit={{ transform: 'scale(0.6)', opacity: 0 }}
+                  transition={{ type: 'spring', duration: 0.35, bounce: 0.3 }}
+                  className="grid h-6 min-w-6 place-items-center rounded-md bg-white px-1.5 font-sans text-xs font-extrabold tabular-nums text-blaze"
                 >
                   {count}
                 </motion.span>
               )}
             </AnimatePresence>
           </button>
-          <a href={BUSINESS.phoneHref} className="btn-ghost h-10 w-10 px-0 md:hidden" aria-label={`Call ${BUSINESS.phone}`}>
+          <a href={BUSINESS.phoneHref} className="btn-ghost h-11 w-11 px-0 md:hidden" aria-label={`Call ${BUSINESS.phone}`}>
             <Phone className="h-[18px] w-[18px]" />
           </a>
         </div>

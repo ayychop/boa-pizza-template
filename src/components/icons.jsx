@@ -17,9 +17,12 @@ export const Close = (p) => (
 export const Check = (p) => (
   <svg viewBox="0 0 24 24" aria-hidden="true" {...base} strokeWidth={2.2} {...p}><path d="M5 12.5l4.5 4.5L19 7.5" /></svg>
 )
+// Bag, Moto and Store are Lucide glyphs (shopping-bag, motorbike, store) generated via icon-mcp at the set's 1.6 stroke.
 export const Bag = (p) => (
   <svg viewBox="0 0 24 24" aria-hidden="true" {...base} {...p}>
-    <path d="M5 8h14l-1.2 11.2a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8L5 8z" /><path d="M9 8V6.5a3 3 0 0 1 6 0V8" />
+    <path d="M16 10a4 4 0 0 1-8 0" />
+    <path d="M3.103 6.034h17.794" />
+    <path d="M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z" />
   </svg>
 )
 export const MenuIcon = (p) => (
@@ -37,14 +40,20 @@ export const Phone = (p) => (
     <path d="M5 4h3.2l1.6 4-2 1.3a10 10 0 0 0 4.9 4.9l1.3-2 4 1.6V17a2 2 0 0 1-2 2A15 15 0 0 1 3 6a2 2 0 0 1 2-2z" />
   </svg>
 )
-export const Scooter = (p) => (
+export const Moto = (p) => (
   <svg viewBox="0 0 24 24" aria-hidden="true" {...base} {...p}>
-    <circle cx="6" cy="17" r="2.5" /><circle cx="18" cy="17" r="2.5" /><path d="M8.5 17h6.8l1.7-6H13M17 11l-1.5-4H13M3.5 13H10l1.5 4" />
+    <path d="m18 14-1-3" />
+    <path d="m3 9 6 2a2 2 0 0 1 2-2h2a2 2 0 0 1 1.99 1.81" />
+    <path d="M8 17h3a1 1 0 0 0 1-1 6 6 0 0 1 6-6 1 1 0 0 0 1-1v-.75A5 5 0 0 0 17 5" />
+    <circle cx="19" cy="17" r="3" />
+    <circle cx="5" cy="17" r="3" />
   </svg>
 )
 export const Store = (p) => (
   <svg viewBox="0 0 24 24" aria-hidden="true" {...base} {...p}>
-    <path d="M4 9.5V20h16V9.5M3 9.5 5 4h14l2 5.5a2.6 2.6 0 0 1-4.5 1.6 2.6 2.6 0 0 1-4.5 0 2.6 2.6 0 0 1-4.5 0A2.6 2.6 0 0 1 3 9.5z" /><path d="M10 20v-5h4v5" />
+    <path d="M15 21v-5a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v5" />
+    <path d="M17.774 10.31a1.12 1.12 0 0 0-1.549 0 2.5 2.5 0 0 1-3.451 0 1.12 1.12 0 0 0-1.548 0 2.5 2.5 0 0 1-3.452 0 1.12 1.12 0 0 0-1.549 0 2.5 2.5 0 0 1-3.77-3.248l2.889-4.184A2 2 0 0 1 7 2h10a2 2 0 0 1 1.653.873l2.895 4.192a2.5 2.5 0 0 1-3.774 3.244" />
+    <path d="M4 10.95V19a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8.05" />
   </svg>
 )
 export const Arrow = (p) => (

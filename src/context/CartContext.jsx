@@ -20,6 +20,7 @@ function reducer(state, action) {
           itemId: item.id,
           name: item.name,
           img: item.img,
+          look: item.look,
           unit: unitPrice(item, opts),
           summary: describeOptions(item, opts),
           qty,
